@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Warp</title>
+  <script src="bundle.js"></script>
+</head>
+
+<body>
+  <!-- fog="type: exponential; color: #ffffff; density:0.2" -->
+  <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true>
+    
+    <a-assets>
+      <img id="img1" src="assets/textures/img_1.jpg"></img>
+      <img id="img2" src="assets/textures/img_2.jpg"></img>
+      <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
+    </a-assets>
+
+    <a-entity id="camera" position="0 1.6 0.85" camera="active: true" look-controls cc-keyboard-controls="acceleration: 60"
+      scroll></a-entity>
+    <a-plane segments-height="10" segments-width="10" position="0 1.6 0" scale="1 1 1"
+      blend-material="map: #img1; map2: #img2; noiseMag: 0"></a-plane>
+    <a-plane segments-height="10" segments-width="10" position="0 1.6 -0.001" scale="1.03 1.03 1.03"
+      material="shader:flat; color: #000000; side:  double;"></a-plane>
+
+    <a-plane segments-height="10" segments-width="10" position="-1.78272 0.0 2.93585"
+      rotation="-90 -7.514000000000001 0" scale="0.06 20.2 1" material="shader:flat; color: #000000" geometry="">
+    </a-plane>
+    <a-plane segments-height="10" segments-width="10" position="1.78272 0.0 2.93585" rotation="-90 7.514000000000001 0"
+      scale="0.06 20.2 1" material="shader:flat; color: #000000" geometry=""></a-plane>
+
+    <a-box position="0 1.0 -7" rotation="0 0 0" scale="1 2.0 0.3" material="shader:flat; color: #000000" geometry="">
+    </a-box>
+    <a-entity footsteps="src: #footstep"></a-entity>
+  </a-scene>
+</body>
+
+</html>

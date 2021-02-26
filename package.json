@@ -1,0 +1,25 @@
+{
+  "name": "aframe-test-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --colors",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aframe": "^1.2.0",
+    "aframe-extras": "6.1.1",
+    "aframe-gltf-part-component": "^1.2.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-glsl-loader": "^1.0.1"
+  }
+}

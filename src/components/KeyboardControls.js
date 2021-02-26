@@ -62,22 +62,25 @@ export default {
     this.attachVisibilityEventListeners();
   },
 
-  tick: function (time, delta) {
+  tick: function () {
+  },
+
+  getMoveAmt: function (time, delta) {
     const data = this.data;
     const el = this.el;
     const velocity = this.velocity;
 
     if (!velocity[data.adAxis] && !velocity[data.wsAxis] &&
-        isEmptyObject(this.keys)) { return; }
+        isEmptyObject(this.keys)) { return false; }
 
     // Update velocity.
     delta = delta / 1000;
     this.updateVelocity(delta);
 
-    if (!velocity[data.adAxis] && !velocity[data.wsAxis]) { return; }
+    if (!velocity[data.adAxis] && !velocity[data.wsAxis]) { return false; }
 
     // Get movement vector and translate position.
-    el.object3D.position.add(this.getMovementVector(delta));
+    return this.getMovementVector(delta);
   },
 
   remove: function () {

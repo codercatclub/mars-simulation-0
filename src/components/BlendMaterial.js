@@ -3,71 +3,85 @@ const THREE = AFRAME.THREE;
 
 import BlendVert from "../shaders/BlendVert.glsl";
 import BlendFrag from "../shaders/BlendFrag.glsl";
+import { active } from "promise-inflight";
+
 const doRoutine = function (coroutine) {
-  let r = coroutine.next();
+  const r = coroutine.next();
   return r.done;
 };
 
 export default {
   schema: {
-    map: { default: new THREE.Texture() },
-    map2: { default: new THREE.Texture() },
     timeMsec: { default: 1 },
     transitionAmt: { default: 1 },
   },
 
   init: function () {
-    let img1 = document.querySelector(this.data.map);
-    let img2 = document.querySelector(this.data.map2);
-    let tex1 = new THREE.Texture(img1);
-    tex1.needsUpdate = true;
-    let tex2 = new THREE.Texture(img2);
-    tex2.needsUpdate = true;
-    this.uniforms = this.initVariables(this.data);
-    this.uniforms["map"].value = tex1;
-    this.uniforms["map2"].value = tex2;
-    this.blendMaterial = new THREE.ShaderMaterial({
-      vertexShader: BlendVert,
-      fragmentShader: BlendFrag,
-      uniforms: this.uniforms,
-    });
 
-    this.mesh = this.el.object3D.getObjectByProperty("type", "Mesh");
-    this.mesh.material = this.blendMaterial;
+
+    //list of img names
+    const imgList = ["assets/textures/img_1.jpg", "assets/textures/img_2.jpg", "assets/textures/img_3.jpg",  "assets/textures/img_4.jpg"]
+    const texList = []
+    this.meshList = []
+
+    imgList.forEach((img) => {
+      const tex = new THREE.TextureLoader().load(img);
+      texList.push(tex);
+    })
+
+    let planeGeo = new THREE.PlaneGeometry()
+
+    for(let i = 0; i < texList.length-1; i++) {
+
+      let uniforms = {
+        "map": {value: texList[i]},
+        "map2": {value: texList[i+1]},
+        "timeMsec": {value: 0},
+        "transitionAmt": {value: 0}
+      }
+
+      let blendMaterial = new THREE.ShaderMaterial({
+        vertexShader: BlendVert,
+        fragmentShader: BlendFrag,
+        uniforms: uniforms,
+      });
+
+      let mesh = new THREE.Mesh(planeGeo, blendMaterial)
+      mesh.visible = false;
+      this.meshList.push(mesh)
+      this.el.object3D.add(mesh)
+    }
+
+    this.meshList[0].visible = true;
+
+    this.curWheel = 0
+
 
     document.addEventListener("wheel", (e) => {
-      var delta = parseInt(e.deltaY);
+      const delta = parseInt(e.deltaY);
+      this.curWheel += delta/2000;
+      
+      this.curWheel = Math.max(Math.min(this.curWheel, this.meshList.length-0.00001), 0.0);
 
-      let lastT = this.blendMaterial.uniforms.transitionAmt.value;
-      lastT -= delta / 1000;
-      lastT = Math.max(Math.min(lastT, 1.0), 0.0);
-      this.blendMaterial.uniforms.transitionAmt.value = lastT;
+      let activeIdx = Math.floor(this.curWheel);
+
+      this.meshList.forEach((mesh, idx) => {
+        if(idx == activeIdx) {
+          mesh.visible = true;
+          mesh.material.uniforms.transitionAmt.value = this.curWheel - activeIdx;
+        } else {
+          mesh.visible = false;
+        }
+      })
       return false;
     });
+
+    //TODO: add event listener for oculus scroll event
   },
 
-  initVariables: function (data, type) {
-    let key;
-    let variables = {};
-    for (key in data) {
-      variables[key] = {
-        value: data[key],
-      };
-    }
-    return variables;
-  },
-
-  update: function (data) {
-    let key;
-    for (key in data) {
-      if (key == "map" || key == "map2") continue;
-      this.blendMaterial.uniforms[key].value = data[key];
-      this.blendMaterial.uniforms[key].needsUpdate = true;
-    }
-  },
-  
   tick: function (time, timeDelta) {
-    this.timeDelta = timeDelta;
-    this.blendMaterial.uniforms.timeMsec.value = time;
+    this.meshList.forEach((mesh) => {
+      mesh.material.uniforms.timeMsec.value = time;
+    })
   },
 };

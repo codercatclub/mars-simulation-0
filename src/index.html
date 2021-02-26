@@ -13,8 +13,6 @@
   <a-scene stats renderer="colorManagement: true" background="color: #ffffff" visible=true>
     
     <a-assets>
-      <img id="img1" src="assets/textures/img_1.jpg"></img>
-      <img id="img2" src="assets/textures/img_2.jpg"></img>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
     </a-assets>
 
@@ -28,8 +26,7 @@
 
     <a-log position="0 0 -4"></a-log>
 
-    <a-plane segments-height="10" segments-width="10" position="0 1.6 0" scale="1 1 1"
-      blend-material="map: #img1; map2: #img2; noiseMag: 0"></a-plane>
+    <a-entity position="0 1.6 0" scale="1 1 1" blend-material=""></a-entity>
     <a-plane segments-height="10" segments-width="10" position="0 1.6 -0.001" scale="1.03 1.03 1.03"
       material="shader:flat; color: #000000; side:  double;"></a-plane>
 

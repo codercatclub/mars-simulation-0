@@ -7,6 +7,20 @@ export default {
     model: { default: "#hand" },
   },
 
+  init: function () {
+    this.el.setAttribute("visible", false);
+
+    // Add controllers in VR
+    this.el.sceneEl.addEventListener("enter-vr", (ent) => {
+      this.el.setAttribute("visible", true);
+    });
+
+    // Remove controllers
+    this.el.sceneEl.addEventListener("exit-vr", (ent) => {
+      this.el.setAttribute("visible", false);
+    });
+  },
+
   update: function () {
     const hand = this.data.hand;
 
@@ -30,17 +44,7 @@ export default {
       );
     }
 
-    // Add controllers in VR
-    this.el.sceneEl.addEventListener("enter-vr", (ent) => {
-      this.el.setAttribute("visible", true);
-
-      // Set a model.
-      el.setAttribute("gltf-model", this.data.model);
-    });
-
-    // Remove controllers
-    this.el.sceneEl.addEventListener("exit-vr", (ent) => {
-      this.el.setAttribute("visible", false);
-    });
+    // Set a model.
+    el.setAttribute("gltf-model", this.data.model);
   },
 };

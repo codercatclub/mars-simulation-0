@@ -23,9 +23,12 @@ const VRControls = {
     if ("xr" in navigator) {
       navigator.xr.isSessionSupported("immersive-vr").then((supported) => {
         if (supported) {
-          this.isVR = true;
-          // set camera to the right pos 
-          this.cameraRig.position.set(0, 1.6, 0.85);
+          this.el.sceneEl.addEventListener("enter-vr", (ent) => {
+            this.isVR = true;
+          });
+          this.el.sceneEl.addEventListener("exit-vr", (ent) => {
+            this.isVR = false;
+          });
         }
       });
     }
@@ -41,9 +44,9 @@ const VRControls = {
   },
 
   getMoveAmt: function (time, timeDelta) {
-    if(!this.isVR) return false;
+    if (!this.isVR) return false;
 
-    this.deltaTimeSec = timeDelta/1000;
+    this.deltaTimeSec = timeDelta / 1000;
     this.camera.getWorldQuaternion(this.worldQuat);
     this.tweenForward = new THREE.Vector3(
       -this.lastAxis.x,
@@ -55,7 +58,7 @@ const VRControls = {
   },
 
   handleVRMove: function (move, timeDelta) {
-    return move.multiplyScalar(-this.vrMovingSpeed * timeDelta)
+    return move.multiplyScalar(-this.vrMovingSpeed * timeDelta);
   },
 };
 

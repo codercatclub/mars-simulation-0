@@ -20,7 +20,13 @@ export default {
 
 
     //list of img names
-    const imgList = ["assets/textures/img_1.jpg", "assets/textures/img_2.jpg", "assets/textures/img_3.jpg",  "assets/textures/img_4.jpg"]
+    let imgList = []
+    let path = "assets/textures/img_";
+    for(let i = 1; i <= 13; i++) {
+      let iPath = path + parseInt(i) + ".jpg";
+      imgList.push(iPath)
+    }
+
     const texList = []
     this.meshList = []
 

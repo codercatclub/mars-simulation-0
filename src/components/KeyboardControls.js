@@ -60,6 +60,8 @@ export default {
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onVisibilityChange = this.onVisibilityChange.bind(this);
     this.attachVisibilityEventListeners();
+
+    this.cameraEl = document.querySelector('#camera');
   },
 
   tick: function () {
@@ -152,7 +154,7 @@ export default {
     const rotationEuler = new THREE.Euler(0, 0, 0, 'YXZ');
 
     return function (delta) {
-      const rotation = this.el.getAttribute('rotation');
+      const rotation = this.cameraEl.getAttribute('rotation');
       const velocity = this.velocity;
       let xRotation;
 

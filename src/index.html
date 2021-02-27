@@ -14,17 +14,19 @@
     
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
+      <a-asset-item id="hand_right" src="assets/models/hand_right.glb"></a-asset-item>
+      <a-asset-item id="hand_left" src="assets/models/hand_left.glb"></a-asset-item>
     </a-assets>
 
     <a-entity id="camera-rig" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover quick-turn>
       <a-entity id="camera" position="0 1.6 0.85" camera look-controls>
       </a-entity>
       <a-entity oculus-go-controls></a-entity>
-      <a-entity id="leftHandController" oculus-touch-controls="hand: left; orientationOffset: 0 0 0;"></a-entity>
-      <a-entity id="rightHandController" oculus-touch-controls="hand: right; orientationOffset: 0 0 0;"></a-entity>
+      <a-entity id="rightHandController" custom-vr-controller="model: #hand_right; hand: right;"></a-entity>
+      <a-entity id="leftHandController" custom-vr-controller="model: #hand_left; hand: left;"></a-entity>
     </a-entity>
 
-    <a-log position="0 0 -4"></a-log>
+    <!-- <a-log position="-3 0 0"></a-log> -->
 
     <a-entity position="0 1.6 0" scale="1 1 1" blend-material=""></a-entity>
     <a-plane segments-height="10" segments-width="10" position="0 1.6 -0.001" scale="1.03 1.03 1.03"

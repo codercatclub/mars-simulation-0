@@ -9,6 +9,7 @@ import KeyboardControls from './components/KeyboardControls';
 import VRControls from './components/VRControls';
 import QuickTurn from './components/QuickTurn';
 import Mover from './components/Mover';
+import CustomVRController from './components/CustomVRController';
 import ExampleSystem from './systems/ExampleSystem';
 
 const THREE = AFRAME.THREE;
@@ -25,3 +26,4 @@ AFRAME.registerComponent('quick-turn', QuickTurn);
 AFRAME.registerComponent('blend-material', BlendMaterial);
 AFRAME.registerComponent('footsteps', Footsteps);
 AFRAME.registerComponent('mover', Mover);
+AFRAME.registerComponent('custom-vr-controller', CustomVRController);

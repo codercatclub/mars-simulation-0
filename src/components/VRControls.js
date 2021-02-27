@@ -42,7 +42,6 @@ const VRControls = {
 
   getMoveAmt: function (time, timeDelta) {
     if(!this.isVR) return false;
-    AFRAME.log('is vr' + time*100000000);
 
     this.deltaTimeSec = timeDelta/1000;
     this.camera.getWorldQuaternion(this.worldQuat);

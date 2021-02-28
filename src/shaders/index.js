@@ -1,9 +1,10 @@
-import PicVert from './PicVert.glsl';
-import PicFrag from './PicFrag.glsl';
+import HeadVert from './HeadVert.glsl';
+import HeadFrag from './HeadFrag.glsl';
 
-export const Pic = {
+export const Head = {
   schema: {
+    timeMsec: { type: 'time', is: 'uniform' },
   },
-  vertexShader: PicVert,
-  fragmentShader: PicFrag,
+  vertexShader: HeadVert,
+  fragmentShader: HeadFrag,
 };

@@ -12,6 +12,8 @@ import Mover from './components/Mover';
 import CustomVRController from './components/CustomVRController';
 import ExampleSystem from './systems/ExampleSystem';
 
+import { Head } from './shaders';
+
 const THREE = AFRAME.THREE;
 
 // Register all shaders
@@ -27,3 +29,6 @@ AFRAME.registerComponent('blend-material', BlendMaterial);
 AFRAME.registerComponent('footsteps', Footsteps);
 AFRAME.registerComponent('mover', Mover);
 AFRAME.registerComponent('custom-vr-controller', CustomVRController);
+
+
+AFRAME.registerShader('head', Head);

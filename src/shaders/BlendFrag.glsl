@@ -44,6 +44,8 @@ void main() {
   // color2 *= 1.0 + noiseAmt * (1.0-blendAmt);
 
   //blend the two
+  // offsetColor1.r += 2.0 * blendAmt*offsetColor1.r;
+  // offsetColor2.g += 2.0 * (1.0-blendAmt)*offsetColor2.g;
   vec3 blendColor = mix(offsetColor1, offsetColor2, blendAmt);
 
   gl_FragColor = vec4( blendColor, 1.0 );

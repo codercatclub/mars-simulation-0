@@ -54,6 +54,8 @@ const VRControls = {
       -this.lastAxis.y
     ).applyQuaternion(this.worldQuat.premultiply(this.camera.quaternion));
 
+    this.tweenForward.y = 0.0;
+    
     return this.handleVRMove(this.tweenForward, timeDelta);
   },
 

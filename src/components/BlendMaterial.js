@@ -62,30 +62,42 @@ export default {
 
     this.curWheel = 0
 
-
     document.addEventListener("wheel", (e) => {
       const delta = parseInt(e.deltaY);
-      this.curWheel += delta/2000;
-      
-      this.curWheel = Math.max(Math.min(this.curWheel, this.meshList.length-0.00001), 0.0);
-
-      let activeIdx = Math.floor(this.curWheel);
-
-      this.meshList.forEach((mesh, idx) => {
-        if(idx == activeIdx) {
-          mesh.visible = true;
-          mesh.material.uniforms.transitionAmt.value = this.curWheel - activeIdx;
-        } else {
-          mesh.visible = false;
-        }
-      })
+      this.handleScroll(delta/2000);
       return false;
     });
 
-    //TODO: add event listener for oculus scroll event
+    const controller = document.querySelector("#leftHandController");
+    controller.addEventListener('axismove', (evt) => {
+      const axisY = evt.detail.axis[3];
+      if(axisY > 0.9) {
+        this.handleScroll(this.timeDeltaSec);
+      } else {
+        this.handleScroll(-this.timeDeltaSec);
+      }
+    });
+  },
+
+  handleScroll: function(scrollDelta) {
+    this.curWheel += scrollDelta;
+      
+    this.curWheel = Math.max(Math.min(this.curWheel, this.meshList.length-0.00001), 0.0);
+
+    let activeIdx = Math.floor(this.curWheel);
+
+    this.meshList.forEach((mesh, idx) => {
+      if(idx == activeIdx) {
+        mesh.visible = true;
+        mesh.material.uniforms.transitionAmt.value = this.curWheel - activeIdx;
+      } else {
+        mesh.visible = false;
+      }
+    })
   },
 
   tick: function (time, timeDelta) {
+    this.timeDeltaSec = timeDelta/1000;
     this.meshList.forEach((mesh) => {
       mesh.material.uniforms.timeMsec.value = time;
     })

@@ -9,11 +9,12 @@
 </head>
 
 <body>
-  <!-- fog="type: exponential; color: #ffffff; density:0.2" -->
-  <a-scene stats renderer="colorManagement: true" background="color: #ffffff" visible=true>
+  <a-scene stats renderer="colorManagement: true" background="color: #ffffff" visible=true fog="type: exponential; color: #ffffff; density:0.2">
     
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
+      <a-asset-item id="evironment" src="assets/models/gallery_environment.glb"></a-asset-item>
+
       <a-asset-item id="hand_right" src="assets/models/hand_right.glb"></a-asset-item>
       <a-asset-item id="hand_left" src="assets/models/hand_left.glb"></a-asset-item>
     </a-assets>
@@ -28,18 +29,16 @@
 
     <!-- <a-log position="-3 0 0"></a-log> -->
 
-    <a-entity position="0 1.6 0" scale="1 1 1" blend-material=""></a-entity>
-    <a-plane segments-height="10" segments-width="10" position="0 1.6 -0.001" scale="1.03 1.03 1.03"
+    <a-entity gltf-part="src: #evironment; part: floor_lines" material="shader:flat; color: #000000; side:  double;"></a-entity>
+    <a-entity gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
+    <a-entity gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
+    <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;"></a-entity>
+    <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;"></a-entity>
+
+    <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
+    <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01" scale="1.03 1.03 1.03"
       material="shader:flat; color: #000000; side:  double;"></a-plane>
 
-    <a-plane segments-height="10" segments-width="10" position="-1.78272 0.0 2.93585"
-      rotation="-90 -7.514000000000001 0" scale="0.06 20.2 1" material="shader:flat; color: #000000" geometry="">
-    </a-plane>
-    <a-plane segments-height="10" segments-width="10" position="1.78272 0.0 2.93585" rotation="-90 7.514000000000001 0"
-      scale="0.06 20.2 1" material="shader:flat; color: #000000" geometry=""></a-plane>
-
-    <a-box position="0 1.0 -7" rotation="0 0 0" scale="1 2.0 0.3" material="shader:flat; color: #000000" geometry="">
-    </a-box>
     <a-entity footsteps="src: #footstep"></a-entity>
   </a-scene>
 </body>

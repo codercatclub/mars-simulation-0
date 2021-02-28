@@ -69,7 +69,6 @@ export default {
 
   getMoveAmt: function (time, delta) {
     const data = this.data;
-    const el = this.el;
     const velocity = this.velocity;
 
     if (!velocity[data.adAxis] && !velocity[data.wsAxis] &&

@@ -26,6 +26,9 @@ const Mover = {
       });
     }
   },
+  TeleportToZero: function() {
+    this.cameraRig.position.set(0,0,0);
+  },
 
   tick: function (time, timeDelta) {
     let moveAmt = this.controls.getMoveAmt(time, timeDelta);

@@ -8,10 +8,10 @@ const WALK_WIDTH = 0.25
 export default {
   schema: {
     src: { type: "asset" },
+    color: { type:"string" }
   },
 
   init: function () {
-
     this.mainCamera = document.querySelector('#camera').object3D;
     this.lastStepPos = new THREE.Vector3();
     this.curCamPos = new THREE.Vector3();
@@ -26,7 +26,7 @@ export default {
       let footMesh = mesh;
 
       mesh.children[0].rotateY(Math.PI/2);
-      mesh.children[0].material = new THREE.MeshBasicMaterial({color:new THREE.Color("#000000")});
+      mesh.children[0].material = new THREE.MeshBasicMaterial({color:new THREE.Color(this.data.color)});
 
       // let footGeo = new THREE.BoxGeometry(0.5,0.1,0.5);
       for(let i = 0; i < 21; i++) {
@@ -78,6 +78,7 @@ export default {
   tick: function (time, timeDelta) {
 
     if(!this.footstepPool) return;
+    if(!this.el.object3D.parent.visible) return;
     // Do something on every scene tick or frame.
     this.mainCamera.getWorldPosition(this.curCamPos)
     

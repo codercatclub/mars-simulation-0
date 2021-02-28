@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <a-scene stats renderer="colorManagement: true" background="color: #ffffff" visible=true fog="type: exponential; color: #ffffff; density:0.2">
+  <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true fog="type: exponential; color: #ffffff; density:0.2" scene-transition>
     
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
@@ -28,18 +28,25 @@
     </a-entity>
 
     <!-- <a-log position="-3 0 0"></a-log> -->
+    <a-entity id="city-scene" visible="true">
+      <a-entity gltf-part="src: #evironment; part: floor_lines" material="shader:flat; color: #000000; side:  double;"></a-entity>
+      <a-entity id="vectorFieldDoor" gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
+      <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;"></a-entity>
+      <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;"></a-entity>
 
-    <a-entity gltf-part="src: #evironment; part: floor_lines" material="shader:flat; color: #000000; side:  double;"></a-entity>
-    <a-entity gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
-    <a-entity gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
-    <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;"></a-entity>
-    <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;"></a-entity>
+      <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
+      <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01" scale="1.03 1.03 1.03"
+        material="shader:flat; color: #000000; side:  double;"></a-plane>
+      <a-entity footsteps="src: #footstep; color:#000000"></a-entity>
+    </a-entity>
+    
 
-    <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
-    <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01" scale="1.03 1.03 1.03"
-      material="shader:flat; color: #000000; side:  double;"></a-plane>
-
-    <a-entity footsteps="src: #footstep"></a-entity>
+    <a-entity id="void-scene" position="0 0 0" visible="false">
+      <!-- <a-entity id="void-scene-sound"
+        sound="src: #void-background-sound; positional: false; autoplay: false; loop: true; volume: 1;"></a-entity> -->
+        <a-entity footsteps="src: #footstep; color:#ffffff"></a-entity>
+      <a-entity vector-fields></a-entity>
+    </a-entity>
   </a-scene>
 </body>
 

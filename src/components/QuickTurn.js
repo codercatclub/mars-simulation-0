@@ -1,7 +1,7 @@
 import AFRAME from 'aframe';
 const THREE = AFRAME.THREE;
 
-const QuickTurn = {
+export default {
   schema: {
     controllerID: { type: 'string', default: 'leftHandController' },
   },
@@ -70,5 +70,3 @@ const QuickTurn = {
   tick: function (time, timeDelta) {
   },
 };
-
-export default QuickTurn;

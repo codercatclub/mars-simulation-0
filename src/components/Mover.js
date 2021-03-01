@@ -1,6 +1,6 @@
 const THREE = AFRAME.THREE;
 
-const Mover = {
+export default {
   schema: {},
 
   init: function () {
@@ -37,5 +37,3 @@ const Mover = {
     }
   },
 };
-
-export default Mover;

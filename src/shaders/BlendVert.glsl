@@ -1,11 +1,6 @@
 @import ./PerlinNoise;
-
-varying float noise;
+@import ./FogVertPars;
 varying vec2 vUv;
-uniform float timeMsec;
-uniform float noiseMag;
-uniform float offset;
-varying vec4 vViewDir;
 
 float turbulence(vec3 p) {
 
@@ -22,9 +17,8 @@ float turbulence(vec3 p) {
 
 void main() {
   vUv = uv;
-  float time = timeMsec / 1000.0;
-  noise = 5.0 * pnoise3((position) + vec3(time, offset, 0.0), vec3(100.0));
-  vec3 newPosition = position + noiseMag * noise;
-  vViewDir = modelViewMatrix * vec4(newPosition, 1.0);
-  gl_Position = projectionMatrix * vViewDir;
+  vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+  vec4 mvPosition = viewMatrix * worldPosition;
+  @import ./FogVert;
+  gl_Position = projectionMatrix * mvPosition;
 }

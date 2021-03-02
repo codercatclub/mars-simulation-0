@@ -35,7 +35,7 @@ export default {
             this.enteredDoor = true;
             this.voidScene.setAttribute("visible", "true")
             this.cityScene.setAttribute("visible", "false")
-            this.cameraRigEl.components["mover"].TeleportToZero();
+            this.cameraRigEl.components["mover"].teleportToZero();
             this.el.sceneEl.object3D.background = new THREE.Color( 0x000000 );
             this.el.sceneEl.object3D.fog.color = new THREE.Color( 0x000000 );
         }

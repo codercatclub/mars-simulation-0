@@ -1,4 +1,5 @@
 import AFRAME from 'aframe';
+
 require('aframe-gltf-part-component');
 require('aframe-extras');
 require('aframe-log-component');

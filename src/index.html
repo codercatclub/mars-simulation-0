@@ -5,12 +5,116 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photo Warp</title>
-  <script src="bundle.js"></script>
+  <style>
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .load-container {
+      display: flex;
+      flex-direction: column;
+      font-family: Courier New, Courier, monospace;
+      font-size: 12px;
+      width: 240px;
+    }
+
+    .header {
+      width: 100%;
+      font-family: Courier New, Courier, monospace;
+      position: absolute;
+      top: 0;
+      z-index: 100;
+      display: flex;
+    }
+
+    .header a {
+      margin: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 26px;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .spacer {
+      flex-grow: 1;
+    }
+
+    #progress {
+      width: 100%;
+      border-style: solid;
+      border-width: 1px;
+      border-color: black;
+      margin-bottom: 5px;
+    }
+
+    #bar {
+      width: 1%;
+      height: 10px;
+      background-color: rgb(14, 14, 14);
+    }
+  </style>
 </head>
 
 <body>
+
+  <div class="header">
+    <a href="/">.mars_cyborgs</a>
+    <div class="spacer"></div>
+    <a href="/about">.about</a>
+    <a href="https://codercat.tk" target="_blank">.other</a>
+  </div>
+
+  <div id="loading-screen">
+    <div class="load-container">
+      <div id="progress">
+        <div id="bar"></div>
+      </div>
+      <div id="load-log">Loading broken dreams</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const ascene = document.querySelector('a-scene');
+      const assets = document.querySelector('a-assets');
+      const { manager: loadManager } = assets.fileLoader;
+      const loadingScreen = document.querySelector('#loading-screen');
+
+      const barEl = document.getElementById("bar");
+      const loadLogEl = document.getElementById("load-log");
+      const width = 1;
+
+      const phrases = ['complete lack of surprise', "inflamed sense of rejection", 'smirking revenge', 'cold sweat', 'broken heart'];
+
+      loadManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+        const width = (itemsLoaded / itemsTotal) * 100;
+        const idx = Math.floor(phrases.length * Math.random());
+
+        barEl.style.width = width + "%";
+        loadLogEl.innerHTML = `Loading ${phrases[idx]}`;
+      }
+
+      ascene.addEventListener('loaded', () => {
+        loadingScreen.style.display = 'none';
+        console.log('[+] All assets loaded!')
+      });
+    });
+  </script>
+
+  <script src="bundle.js"></script>
+
   <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true
-    fog="type: exponential; color: #ffffff; density:0.2" scene-transition vr-button>
+    fog="type: exponential; color: #ffffff; density:0.2" scene-transition vr-button loading-screen="enabled: false">
 
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
@@ -22,7 +126,8 @@
       <audio id="gallery-background-sound" src="assets/sounds/inception.mp3" preload="auto"></audio>
     </a-assets>
 
-    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover quick-turn>
+    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover
+      quick-turn>
       <a-entity id="camera" position="0 1.6 0" camera look-controls>
       </a-entity>
       <a-entity oculus-go-controls></a-entity>

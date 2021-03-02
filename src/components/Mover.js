@@ -26,7 +26,8 @@ export default {
       });
     }
   },
-  TeleportToZero: function() {
+
+  teleportToZero: function() {
     this.cameraRig.position.set(0,0,0);
   },
 

@@ -55,14 +55,12 @@ export default {
             this.voidScene.setAttribute("visible", "false")
             this.cityScene.setAttribute("visible", "true")
             this.enteredDoor = false;
-            console.log("Sw")
             this.el.sceneEl.object3D.background = new THREE.Color( 0xffffff );
             this.el.sceneEl.object3D.fog.color = new THREE.Color( 0xffffff )
         } else {
             this.voidScene.setAttribute("visible", "true")
             this.cityScene.setAttribute("visible", "false")
             this.enteredDoor = true;
-            console.log("Hi")
             this.el.sceneEl.object3D.background = new THREE.Color( 0x000000 );
             this.el.sceneEl.object3D.fog.color = new THREE.Color( 0x000000 ); 
         }

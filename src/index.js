@@ -1,4 +1,5 @@
 import AFRAME from 'aframe';
+
 require('aframe-gltf-part-component');
 require('aframe-extras');
 require('aframe-log-component');
@@ -12,16 +13,21 @@ import Mover from './components/Mover';
 import CustomVRController from './components/CustomVRController';
 import VectorFields from './components/VectorFields';
 import SceneTransition from './components/SceneTransition';
+import VRButton from './components/VRButton';
+
 import ExampleSystem from './systems/ExampleSystem';
+import SoundSystem from './systems/SoundSystem';
 
 import { Head } from './shaders';
 
 const THREE = AFRAME.THREE;
 
 // Register all shaders
+AFRAME.registerShader('head', Head);
 
 // Register all systems
 AFRAME.registerSystem('example-system', ExampleSystem);
+AFRAME.registerSystem('sound-system', SoundSystem);
 
 // Register all components
 AFRAME.registerComponent('cc-keyboard-controls', KeyboardControls);
@@ -33,6 +39,4 @@ AFRAME.registerComponent('mover', Mover);
 AFRAME.registerComponent('custom-vr-controller', CustomVRController);
 AFRAME.registerComponent('vector-fields', VectorFields);
 AFRAME.registerComponent('scene-transition', SceneTransition);
-
-
-AFRAME.registerShader('head', Head);
+AFRAME.registerComponent('vr-button', VRButton);

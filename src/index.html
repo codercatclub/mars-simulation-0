@@ -5,22 +5,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photo Warp</title>
-  <script src="bundle.js"></script>
+  <style>
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .load-container {
+      display: flex;
+      flex-direction: column;
+      font-family: Courier New, Courier, monospace;
+      font-size: 12px;
+      width: 240px;
+    }
+
+    .header {
+      width: 100%;
+      font-family: Courier New, Courier, monospace;
+      position: absolute;
+      top: 0;
+      z-index: 100;
+      display: flex;
+    }
+
+    .header a {
+      margin: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 26px;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .spacer {
+      flex-grow: 1;
+    }
+
+    #progress {
+      width: 100%;
+      border-style: solid;
+      border-width: 1px;
+      border-color: black;
+      margin-bottom: 5px;
+    }
+
+    #bar {
+      width: 1%;
+      height: 10px;
+      background-color: rgb(14, 14, 14);
+    }
+  </style>
 </head>
 
 <body>
-  <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true fog="type: exponential; color: #ffffff; density:0.2" scene-transition>
-    
+
+  <div class="header">
+    <a href="/">.mars_cyborgs</a>
+    <div class="spacer"></div>
+    <a href="/about">.about</a>
+    <a href="https://codercat.tk" target="_blank">.other</a>
+  </div>
+
+  <div id="loading-screen">
+    <div class="load-container">
+      <div id="progress">
+        <div id="bar"></div>
+      </div>
+      <div id="load-log">Loading broken dreams</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const ascene = document.querySelector('a-scene');
+      const assets = document.querySelector('a-assets');
+      const { manager: loadManager } = assets.fileLoader;
+      const loadingScreen = document.querySelector('#loading-screen');
+
+      const barEl = document.getElementById("bar");
+      const loadLogEl = document.getElementById("load-log");
+      const width = 1;
+
+      const phrases = ['complete lack of surprise', "inflamed sense of rejection", 'smirking revenge', 'cold sweat', 'broken heart'];
+
+      loadManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+        const width = (itemsLoaded / itemsTotal) * 100;
+        const idx = Math.floor(phrases.length * Math.random());
+
+        barEl.style.width = width + "%";
+        loadLogEl.innerHTML = `Loading ${phrases[idx]}`;
+      }
+
+      ascene.addEventListener('loaded', () => {
+        loadingScreen.style.display = 'none';
+        console.log('[+] All assets loaded!')
+      });
+    });
+  </script>
+
+  <script src="bundle.js"></script>
+
+  <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true
+    fog="type: exponential; color: #ffffff; density:0.2" scene-transition vr-button loading-screen="enabled: false">
+
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
       <a-asset-item id="evironment" src="assets/models/gallery_environment.glb"></a-asset-item>
 
       <a-asset-item id="hand_right" src="assets/models/hand_right.glb"></a-asset-item>
       <a-asset-item id="hand_left" src="assets/models/hand_left.glb"></a-asset-item>
+
+      <audio id="gallery-background-sound" src="assets/sounds/inception.mp3" preload="auto"></audio>
     </a-assets>
 
-    <a-entity id="camera-rig" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover quick-turn>
-      <a-entity id="camera" position="0 1.6 0.85" camera look-controls>
+    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover
+      quick-turn>
+      <a-entity id="camera" position="0 1.6 0" camera look-controls>
       </a-entity>
       <a-entity oculus-go-controls></a-entity>
       <a-entity id="rightHandController" custom-vr-controller="model: #hand_right; hand: right;"></a-entity>
@@ -29,23 +137,57 @@
 
     <!-- <a-log position="-3 0 0"></a-log> -->
     <a-entity id="city-scene" visible="true">
-      <a-entity gltf-part="src: #evironment; part: floor_lines" material="shader:flat; color: #000000; side:  double;"></a-entity>
-      <a-entity id="vectorFieldDoor" gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
-      <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;"></a-entity>
-      <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;"></a-entity>
+      <a-entity sound="src: #gallery-background-sound; positional: false; autoplay: true; loop: true; volume: 0.8;">
+      </a-entity>
+
+      <a-entity gltf-part="src: #evironment; part: floor_lines" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+      <a-entity id="vectorFieldDoor" gltf-part="src: #evironment; part: door"
+        material="shader:flat; color: #000000; side:  double;"></a-entity>
+
+      <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+      <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+
+      <a-entity id="torso" gltf-part="src: #evironment; part: torso" material="shader:flat; vertexColors: vertex;">>
+      </a-entity>
+      <a-entity gltf-part="src: #evironment; part: text2" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+
+
+      <a-entity id="torso" gltf-part="src: #evironment; part: leg" material="shader:flat; vertexColors: vertex;">>
+      </a-entity>
+      <a-entity gltf-part="src: #evironment; part: text3" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+
+      <a-entity id="torso" gltf-part="src: #evironment; part: hand" material="shader:flat; vertexColors: vertex;">>
+      </a-entity>
+      <a-entity gltf-part="src: #evironment; part: text4" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+
+      <a-entity id="torso" gltf-part="src: #evironment; part: vine" material="shader:flat; vertexColors: vertex;">>
+      </a-entity>
+      <a-entity gltf-part="src: #evironment; part: text5" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
+
+      <a-entity id="torso" gltf-part="src: #evironment; part: geo1" material="shader:flat; vertexColors: vertex;">>
+      </a-entity>
+      <a-entity gltf-part="src: #evironment; part: text6" material="shader:flat; color: #000000; side:  double;">
+      </a-entity>
 
       <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
-      <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01" scale="1.03 1.03 1.03"
-        material="shader:flat; color: #000000; side:  double;"></a-plane>
+      <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01"
+        scale="1.03 1.03 1.03" material="shader:flat; color: #000000; side:  double;"></a-plane>
       <a-entity footsteps="src: #footstep; color:#000000"></a-entity>
     </a-entity>
-    
+
 
     <a-entity id="void-scene" position="0 0 0" visible="false">
       <!-- <a-entity id="void-scene-sound"
         sound="src: #void-background-sound; positional: false; autoplay: false; loop: true; volume: 1;"></a-entity> -->
-        <a-entity footsteps="src: #footstep; color:#ffffff"></a-entity>
         <a-entity id="galleryDoor" gltf-part="src: #evironment; part: door" material="shader:flat; color: #ffffff; side:  double;"></a-entity>
+        <a-entity footsteps="src: #footstep; color:#ffffff"></a-entity>
       <a-entity vector-fields></a-entity>
     </a-entity>
   </a-scene>

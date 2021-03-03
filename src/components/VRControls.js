@@ -1,6 +1,6 @@
 const THREE = AFRAME.THREE;
 
-const VRControls = {
+export default {
   schema: {
     controllerID: { type: "string", default: "rightHandController" },
     cameraID: { type: "string", default: "camera" },
@@ -63,5 +63,3 @@ const VRControls = {
     return move.multiplyScalar(-this.vrMovingSpeed * timeDelta);
   },
 };
-
-export default VRControls;

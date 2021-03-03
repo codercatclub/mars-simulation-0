@@ -1,6 +1,6 @@
 const THREE = AFRAME.THREE;
 
-const Mover = {
+export default {
   schema: {},
 
   init: function () {
@@ -26,7 +26,8 @@ const Mover = {
       });
     }
   },
-  TeleportToZero: function() {
+
+  teleportToZero: function() {
     this.cameraRig.position.set(0,0,0);
   },
 
@@ -37,5 +38,3 @@ const Mover = {
     }
   },
 };
-
-export default Mover;

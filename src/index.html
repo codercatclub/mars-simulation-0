@@ -31,25 +31,8 @@
     <a-entity id="city-scene" visible="true">
       <a-entity gltf-part="src: #evironment; part: floor_lines" material="shader:flat; color: #000000; side:  double;"></a-entity>
       <a-entity id="vectorFieldDoor" gltf-part="src: #evironment; part: door" material="shader:flat; color: #000000; side:  double;"></a-entity>
-      
       <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;"></a-entity>
       <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;"></a-entity>
-
-      <a-entity id="torso" gltf-part="src: #evironment; part: torso" material="shader:flat; vertexColors: vertex;">></a-entity>
-      <a-entity gltf-part="src: #evironment; part: text2" material="shader:flat; color: #000000; side:  double;"></a-entity>
-
-      
-      <a-entity id="torso" gltf-part="src: #evironment; part: leg" material="shader:flat; vertexColors: vertex;">></a-entity>
-      <a-entity gltf-part="src: #evironment; part: text3" material="shader:flat; color: #000000; side:  double;"></a-entity>
-
-      <a-entity id="torso" gltf-part="src: #evironment; part: hand" material="shader:flat; vertexColors: vertex;">></a-entity>
-      <a-entity gltf-part="src: #evironment; part: text4" material="shader:flat; color: #000000; side:  double;"></a-entity>
-
-      <a-entity id="torso" gltf-part="src: #evironment; part: vine" material="shader:flat; vertexColors: vertex;">></a-entity>
-      <a-entity gltf-part="src: #evironment; part: text5" material="shader:flat; color: #000000; side:  double;"></a-entity>
-
-      <a-entity id="torso" gltf-part="src: #evironment; part: geo1" material="shader:flat; vertexColors: vertex;">></a-entity>
-      <a-entity gltf-part="src: #evironment; part: text6" material="shader:flat; color: #000000; side:  double;"></a-entity>
 
       <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
       <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01" scale="1.03 1.03 1.03"
@@ -62,6 +45,7 @@
       <!-- <a-entity id="void-scene-sound"
         sound="src: #void-background-sound; positional: false; autoplay: false; loop: true; volume: 1;"></a-entity> -->
         <a-entity footsteps="src: #footstep; color:#ffffff"></a-entity>
+        <a-entity id="galleryDoor" gltf-part="src: #evironment; part: door" material="shader:flat; color: #ffffff; side:  double;"></a-entity>
       <a-entity vector-fields></a-entity>
     </a-entity>
   </a-scene>

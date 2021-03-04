@@ -24,6 +24,10 @@ module.exports = {
           to: '.',
         },
         {
+          from: 'src/about.html',
+          to: '.',
+        },
+        {
           from: 'assets',
           to: 'assets',
         },

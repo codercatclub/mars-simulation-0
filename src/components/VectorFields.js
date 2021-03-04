@@ -96,7 +96,7 @@ export default {
             uniforms: {
                 positionTex: { value: 0.0 },
                 time: { value: 0.0 },
-                playerPos: { value: 0.0 },
+                playerPos: { value: new THREE.Vector3(0,0,0) },
             },
             vertexShader: LineComputeVert,
             fragmentShader: LineComputeFrag
@@ -186,7 +186,7 @@ export default {
         }
         this.camera.getWorldPosition(this.cameraWorldPos);
         this.cameraWorldPos.y -= 3;
-        this.computePosMesh.material.uniforms.playerPos.value = this.cameraWorldPos;
+        // this.computePosMesh.material.uniforms.playerPos.value = this.cameraWorldPos;
         this.render();
     },
 };

@@ -14,6 +14,7 @@ import CustomVRController from './components/CustomVRController';
 import VectorFields from './components/VectorFields';
 import SceneTransition from './components/SceneTransition';
 import VRButton from './components/VRButton';
+import ChromeMaterial from './components/ChromeMaterial';
 
 import ExampleSystem from './systems/ExampleSystem';
 import SoundSystem from './systems/SoundSystem';
@@ -40,3 +41,4 @@ AFRAME.registerComponent('custom-vr-controller', CustomVRController);
 AFRAME.registerComponent('vector-fields', VectorFields);
 AFRAME.registerComponent('scene-transition', SceneTransition);
 AFRAME.registerComponent('vr-button', VRButton);
+AFRAME.registerComponent('chrome-material', ChromeMaterial);

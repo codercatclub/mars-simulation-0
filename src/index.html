@@ -114,7 +114,8 @@
   <script src="bundle.js"></script>
 
   <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true
-    fog="type: exponential; color: #ffffff; density:0.2" scene-transition vr-button loading-screen="enabled: false">
+    fog="type: exponential; color: #ffffff; density:0.2" scene-transition vr-button loading-screen="enabled: false"
+    light="defaultLightsEnabled: false">
 
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
@@ -124,6 +125,8 @@
       <a-asset-item id="hand_left" src="assets/models/hand_left.glb"></a-asset-item>
 
       <audio id="gallery-background-sound" src="assets/sounds/inception.mp3" preload="auto"></audio>
+
+      <img id="env-map" src="assets/textures/env.jpg" preload="auto" />
     </a-assets>
 
     <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover
@@ -145,33 +148,43 @@
       <a-entity id="vectorFieldDoor" gltf-part="src: #evironment; part: door"
         material="shader:flat; color: #000000; side:  double;"></a-entity>
 
-      <a-entity gltf-part="src: #evironment; part: helmet" material="shader:flat; color: #000000; side:  double;">
+      <a-entity gltf-part="src: #evironment; part: helmet"
+        chrome-material="envMap: #env-map; envMapIntensity: 1; color: #ffffff">
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity id="torso" gltf-part="src: #evironment; part: torso" material="shader:flat; vertexColors: vertex;">>
+      <a-entity light="type: hemisphere; color: #ffffff"></a-entity>
+
+      <a-entity position="-1.9399 1.34119 2.33024" scale="1.7 1.7 1.7">
+        <a-entity id="torso" gltf-part="src: #evironment; part: spring"
+          chrome-material="envMap: #env-map; envMapIntensity: 2; color: #000000"></a-entity>
+        <a-entity id="torso" gltf-part="src: #evironment; part: wires"
+          chrome-material="envMap: #env-map; color: #e9d72f; roughness: 0.4; metalness: 0; reflectivity: 0.6;">
+        </a-entity>
       </a-entity>
+
       <a-entity gltf-part="src: #evironment; part: text2" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
 
-      <a-entity id="torso" gltf-part="src: #evironment; part: leg" material="shader:flat; vertexColors: vertex;">>
+      <a-entity gltf-part="src: #evironment; part: leg" material="shader:flat; vertexColors: vertex;">>
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text3" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity id="torso" gltf-part="src: #evironment; part: hand" material="shader:flat; vertexColors: vertex;">>
+      <a-entity gltf-part="src: #evironment; part: hand" material="shader:flat; vertexColors: vertex;">>
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text4" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity id="torso" gltf-part="src: #evironment; part: vine" material="shader:flat; vertexColors: vertex;">>
+      <a-entity gltf-part="src: #evironment; part: vine" material="shader:flat; vertexColors: vertex;">>
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text5" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity id="torso" gltf-part="src: #evironment; part: geo1" material="shader:flat; vertexColors: vertex;">>
+      <a-entity gltf-part="src: #evironment; part: back_vine"
+        material="shader:flat; vertexColors: vertex; side:  double;">
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text6" material="shader:flat; color: #000000; side:  double;">
       </a-entity>

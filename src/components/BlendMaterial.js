@@ -19,7 +19,7 @@ export default {
     // list of img names
     let imgList = [];
     let path = "assets/textures/img_";
-    for (let i = 1; i <= 13; i++) {
+    for (let i = 1; i <= 14; i++) {
       let iPath = path + parseInt(i) + ".jpg";
       imgList.push(iPath);
     }
@@ -127,3 +127,16 @@ export default {
     });
   },
 };
+
+
+// if(this.autoScroll) {
+//   let dif = this.curWheel - this.activeIdx;
+//   if(dif < 0.15) {
+//     this.handleScroll(0.003 + 0.02*(dif))
+//   } else if(dif  > 0.85) {
+//     this.handleScroll(0.003 + 0.02*(1.0 - dif))
+//   } else {
+//     this.handleScroll(0.006)
+//   }
+  
+// }

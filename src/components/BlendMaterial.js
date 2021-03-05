@@ -19,7 +19,7 @@ export default {
     // list of img names
     let imgList = [];
     let path = "assets/textures/img_";
-    for (let i = 1; i <= 13; i++) {
+    for (let i = 1; i <= 14; i++) {
       let iPath = path + parseInt(i) + ".jpg";
       imgList.push(iPath);
     }
@@ -97,6 +97,14 @@ export default {
     );
 
     let activeIdx = Math.floor(this.curWheel);
+    
+    if(this.curWheel - activeIdx < 0.15 && scrollDelta < 0.005) {
+      this.curWheel = 0.2*activeIdx + 0.8*this.curWheel;
+    }
+
+    if(this.curWheel - activeIdx > 0.85 && scrollDelta < 0.005) {
+      this.curWheel = 0.2*(activeIdx+1) + 0.8*this.curWheel;
+    }
 
     this.meshList.forEach((mesh, idx) => {
       if (idx == activeIdx) {
@@ -119,3 +127,16 @@ export default {
     });
   },
 };
+
+
+// if(this.autoScroll) {
+//   let dif = this.curWheel - this.activeIdx;
+//   if(dif < 0.15) {
+//     this.handleScroll(0.003 + 0.02*(dif))
+//   } else if(dif  > 0.85) {
+//     this.handleScroll(0.003 + 0.02*(1.0 - dif))
+//   } else {
+//     this.handleScroll(0.006)
+//   }
+  
+// }

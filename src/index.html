@@ -115,7 +115,7 @@
 
   <a-scene renderer="colorManagement: true" background="color: #ffffff" visible=true
     fog="type: exponential; color: #ffffff; density:0.2" scene-transition vr-button loading-screen="enabled: false"
-    light="defaultLightsEnabled: false">
+    light="defaultLightsEnabled: false" stats>
 
     <a-assets>
       <a-asset-item id="footstep" src="assets/models/foot.obj"></a-asset-item>
@@ -129,7 +129,7 @@
       <img id="env-map" src="assets/textures/env.jpg" preload="auto" />
     </a-assets>
 
-    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls mover
+    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls="speed: 0.4" mover
       quick-turn>
       <a-entity id="camera" position="0 1.6 0" camera look-controls>
       </a-entity>
@@ -139,10 +139,10 @@
     </a-entity>
 
     <!-- <a-log position="-3 0 0"></a-log> -->
-  
+
     <a-entity id="city-scene" visible="true">
       <a-entity light="type: hemisphere; color: #ffffff"></a-entity>
-    
+
       <a-entity sound="src: #gallery-background-sound; positional: false; autoplay: true; loop: true; volume: 0.8;">
       </a-entity>
 
@@ -157,17 +157,17 @@
       <a-entity gltf-part="src: #evironment; part: text1" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity position="-1.9399 1.34119 2.33024" scale="1.7 1.7 1.7">
-        <a-entity id="torso" gltf-part="src: #evironment; part: spring"
+      <a-entity id="torso" position="-1.9399 1.24119 2.33024" scale="1.7 1.7 1.7">
+        <a-entity gltf-part="src: #evironment; part: spring"
           chrome-material="envMap: #env-map; envMapIntensity: 2; color: #000000"></a-entity>
-        <a-entity id="torso" gltf-part="src: #evironment; part: wires"
+        <a-entity gltf-part="src: #evironment; part: wires"
           chrome-material="envMap: #env-map; color: #e9d72f; roughness: 0.4; metalness: 0; reflectivity: 0.6;">
         </a-entity>
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text2" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity position="-1.91662 1.35473 3.94397" scale="1.4 1.4 1.4" rotation="0 180 0">
+      <a-entity id="leg" position="-1.91662 1.25473 3.94397" scale="1.4 1.4 1.4" rotation="0 180 0">
         <a-entity gltf-part="src: #evironment; part: leg_spring"
           chrome-material="envMap: #env-map; envMapIntensity: 2; color: #000000"></a-entity>
         <a-entity gltf-part="src: #evironment; part: bow"
@@ -177,7 +177,13 @@
       <a-entity gltf-part="src: #evironment; part: text3" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity gltf-part="src: #evironment; part: hand" material="shader:flat; vertexColors: vertex;">
+      <a-entity id="hand" position="1.9587241608 1.37317860126 3.95885218804" rotation="0.0 0.0 90.0"
+        scale="2.4 2.4 2.4">
+        <a-entity gltf-part="src: #evironment; part: hand_skin"
+          chrome-material="envMap: #env-map; envMapIntensity: 2; color: #030303; roughness: 0.6; metalness: 0; reflectivity: 0.2;">
+        </a-entity>
+        <a-entity gltf-part="src: #evironment; part: hand_bone" chrome-material="envMap: #env-map; color: #ffffff">
+        </a-entity>
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text4" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
@@ -188,8 +194,13 @@
       <a-entity gltf-part="src: #evironment; part: text5" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity gltf-part="src: #evironment; part: back_vine"
-        material="shader:flat; vertexColors: vertex; side:  double;">
+      <a-entity id="vine" position="1.94335364308 1.246 2.3281992604"
+        rotation="-1.48682048374e-14 101.825553088 -1.51906089681e-14" scale="1.1 1.1 1.1">
+        <a-entity gltf-part="src: #evironment; part: back_vine_wire"
+          chrome-material="envMap: #env-map; envMapIntensity: 2; color: #000000"></a-entity>
+        <a-entity gltf-part="src: #evironment; part: back_vine_rings"
+          chrome-material="envMap: #env-map; color: #ffffff">
+        </a-entity>
       </a-entity>
       <a-entity gltf-part="src: #evironment; part: text6" material="shader:flat; color: #000000; side:  double;">
       </a-entity>

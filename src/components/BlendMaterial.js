@@ -97,6 +97,14 @@ export default {
     );
 
     let activeIdx = Math.floor(this.curWheel);
+    
+    if(this.curWheel - activeIdx < 0.15 && scrollDelta < 0.005) {
+      this.curWheel = 0.2*activeIdx + 0.8*this.curWheel;
+    }
+
+    if(this.curWheel - activeIdx > 0.85 && scrollDelta < 0.005) {
+      this.curWheel = 0.2*(activeIdx+1) + 0.8*this.curWheel;
+    }
 
     this.meshList.forEach((mesh, idx) => {
       if (idx == activeIdx) {

@@ -25,14 +25,24 @@ export default {
         }
       });
     }
+
+    if (!this.controls) {
+      console.log(
+        "[-] Can not determine control component reference. Mover won't function properly."
+      );
+    }
   },
 
-  teleportToZero: function() {
-    this.cameraRig.position.set(0,0,0);
+  teleportToZero: function () {
+    this.cameraRig.position.set(0, 0, 0);
   },
 
   tick: function (time, timeDelta) {
-    let moveAmt = this.controls.getMoveAmt(time, timeDelta);
+    if (!this.controls) {
+      return;
+    }
+    const moveAmt = this.controls.getMoveAmt(time, timeDelta);
+
     if (moveAmt) {
       this.cameraRig.position.add(moveAmt);
     }

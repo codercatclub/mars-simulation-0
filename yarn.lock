@@ -198,10 +198,6 @@ aframe-extras@6.1.1:
   dependencies:
     three-pathfinding "^0.7.0"
 
-aframe-gltf-part-component@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/aframe-gltf-part-component/-/aframe-gltf-part-component-1.2.0.tgz#f828fcb74d675a606baf1bbdb361926bb874e9aa"
-
 aframe-log-component@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/aframe-log-component/-/aframe-log-component-1.0.7.tgz#1bc8299f98a1e1989ee6d8eb2835650b7accaacc"

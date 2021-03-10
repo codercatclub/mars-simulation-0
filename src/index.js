@@ -1,6 +1,5 @@
 import AFRAME from 'aframe';
 
-require('aframe-gltf-part-component');
 require('aframe-extras');
 require('aframe-log-component');
 
@@ -18,10 +17,9 @@ import ChromeMaterial from './components/ChromeMaterial';
 
 import ExampleSystem from './systems/ExampleSystem';
 import SoundSystem from './systems/SoundSystem';
+import GLTFPart from './components/GLTFPart';
 
 import { Head } from './shaders';
-
-const THREE = AFRAME.THREE;
 
 // Register all shaders
 AFRAME.registerShader('head', Head);
@@ -42,3 +40,4 @@ AFRAME.registerComponent('vector-fields', VectorFields);
 AFRAME.registerComponent('scene-transition', SceneTransition);
 AFRAME.registerComponent('vr-button', VRButton);
 AFRAME.registerComponent('chrome-material', ChromeMaterial);
+AFRAME.registerComponent('gltf-part', GLTFPart);

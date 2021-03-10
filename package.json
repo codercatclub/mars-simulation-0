@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --colors",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "deploy": "scp -r dist/* kiko@codercat.tk:/home/kiko/codercat2/projects/mars-simulation-0"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,6 @@
   "dependencies": {
     "aframe": "^1.2.0",
     "aframe-extras": "6.1.1",
-    "aframe-gltf-part-component": "^1.2.0",
     "aframe-log-component": "^1.0.7"
   },
   "devDependencies": {

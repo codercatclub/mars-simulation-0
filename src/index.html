@@ -8,7 +8,7 @@
   <style>
     html,
     body {
-        overscroll-behavior : none !important; 
+      overscroll-behavior: none !important;
     }
 
     #loading-screen {
@@ -67,11 +67,16 @@
       height: 10px;
       background-color: rgb(14, 14, 14);
     }
+
+    @media screen and (max-width: 800px) {
+      .header a {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
 <body>
-
   <div class="header">
     <a href="/">.mars_simulation_0</a>
     <div class="spacer"></div>
@@ -134,8 +139,8 @@
       <img id="env-map" src="assets/textures/env.jpg" preload="auto" />
     </a-assets>
 
-    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls="speed: 0.4" mover
-      quick-turn>
+    <a-entity id="camera-rig" position="0 0 0.85" cc-keyboard-controls="acceleration: 10" cc-vr-controls="speed: 0.4"
+      mover quick-turn>
       <a-entity id="camera" position="0 1.6 0" camera look-controls>
       </a-entity>
       <a-entity oculus-go-controls></a-entity>

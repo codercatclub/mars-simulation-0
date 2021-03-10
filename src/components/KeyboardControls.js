@@ -1,4 +1,5 @@
 const THREE = AFRAME.THREE;
+import { html, css } from '../utils';
 
 const CLAMP_VELOCITY = 0.00001;
 const MAX_DELTA = 0.2;
@@ -38,9 +39,6 @@ function isEmptyObject(keys) {
   }
   return true;
 }
-
-const html = strings => strings;
-const css = strings => strings;
 
 /** Touch WASD buttons UI for mobile devices */
 class WASDTouchButtons extends HTMLElement {

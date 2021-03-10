@@ -14,6 +14,7 @@ import VectorFields from './components/VectorFields';
 import SceneTransition from './components/SceneTransition';
 import VRButton from './components/VRButton';
 import ChromeMaterial from './components/ChromeMaterial';
+import SideArrows from './components/SideArrows';
 
 import ExampleSystem from './systems/ExampleSystem';
 import SoundSystem from './systems/SoundSystem';
@@ -41,3 +42,4 @@ AFRAME.registerComponent('scene-transition', SceneTransition);
 AFRAME.registerComponent('vr-button', VRButton);
 AFRAME.registerComponent('chrome-material', ChromeMaterial);
 AFRAME.registerComponent('gltf-part', GLTFPart);
+AFRAME.registerComponent('side-arrows', SideArrows);

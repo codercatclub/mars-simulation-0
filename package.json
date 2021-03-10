@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --colors",
     "start": "webpack-dev-server",
-    "deploy": "scp -r dist/* kiko@codercat.tk:/home/kiko/codercat2/projects/mars-simulation-0"
+    "deploy": "yarn build; scp -r dist/* kiko@codercat.tk:/home/kiko/codercat2/projects/mars-simulation-0"
   },
   "keywords": [],
   "author": "",

@@ -215,10 +215,14 @@
       <a-entity gltf-part="src: #evironment; part: text6" material="shader:flat; color: #000000; side:  double;">
       </a-entity>
 
-      <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
-      <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01"
-        scale="1.03 1.03 1.03" material="shader:flat; color: #000000; side:  double;"></a-plane>
-      <a-entity footsteps="src: #footstep; color:#000000"></a-entity>
+      <!-- Photo frame -->
+      <a-entity side-arrows>
+        <a-entity id="photo-screen" position="0 1.6 0" swwwcale="1 1 1" blend-material=""></a-entity>
+        <a-plane id="photo-screen-frame" segments-height="10" segments-width="10" position="0 1.6 -0.01"
+          scale="1.03 1.03 1.03" material="shader:flat; color: #000000; side:  double;"></a-plane>
+        <a-entity footsteps="src: #footstep; color:#000000"></a-entity>
+      </a-entity>
+
     </a-entity>
 
     <a-entity id="void-scene" position="0 0 0" visible="false">

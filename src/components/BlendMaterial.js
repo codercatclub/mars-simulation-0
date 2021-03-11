@@ -77,6 +77,7 @@ export default {
       return false;
     });
 
+    //VR SUPPORT
     const controller = document.querySelector("#leftHandController");
     controller.addEventListener("axismove", (evt) => {
       const axisY = evt.detail.axis[3];
@@ -85,6 +86,12 @@ export default {
       } else {
         this.handleScroll(-this.timeDeltaSec);
       }
+    });
+
+    //MOBILE SUPPORT
+    const sideArrows = document.querySelector("#photo-frame");
+    this.el.sceneEl.addEventListener('loaded', () => {
+      this.sideArrowComponent = sideArrows.components['side-arrows'];
     });
   },
 
@@ -98,12 +105,12 @@ export default {
 
     let activeIdx = Math.floor(this.curWheel);
     
-    if(this.curWheel - activeIdx < 0.15 && scrollDelta < 0.005) {
-      this.curWheel = 0.2*activeIdx + 0.8*this.curWheel;
+    if (this.curWheel - activeIdx < 0.15 && Math.abs(scrollDelta) < 0.005) {
+      this.curWheel = 0.2 * activeIdx + 0.8 * this.curWheel;
     }
 
-    if(this.curWheel - activeIdx > 0.85 && scrollDelta < 0.005) {
-      this.curWheel = 0.2*(activeIdx+1) + 0.8*this.curWheel;
+    if (this.curWheel - activeIdx > 0.85 && Math.abs(scrollDelta) < 0.005) {
+      this.curWheel = 0.2 * (activeIdx + 1) + 0.8 * this.curWheel;
     }
 
     this.meshList.forEach((mesh, idx) => {
@@ -118,7 +125,18 @@ export default {
     });
   },
 
+  handleMobileScroll: function () {
+    if (!this.sideArrowComponent) return;
+
+    if (this.sideArrowComponent.isLeftPressed) {
+      this.handleScroll(-this.timeDeltaSec);
+    } else if (this.sideArrowComponent.isRightPressed) {
+      this.handleScroll(this.timeDeltaSec);
+    }
+  },
+
   tick: function (time, timeDelta) {
+    this.handleMobileScroll();
     this.timeDeltaSec = timeDelta / 1000;
     this.meshList.forEach((mesh) => {
       if (mesh.shader) {
@@ -138,5 +156,5 @@ export default {
 //   } else {
 //     this.handleScroll(0.006)
 //   }
-  
+
 // }

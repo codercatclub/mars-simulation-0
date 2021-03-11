@@ -59,7 +59,6 @@ class SideArrowsButtons extends HTMLElement {
       }
 
       .btn {
-        display: flex;
         justify-content: center;
         align-items: center;
         height: 50px;
@@ -94,7 +93,6 @@ class SideArrowsButtons extends HTMLElement {
     };
 
     btns.forEach(b => {
-      console.log('b', b);
       b.addEventListener("touchstart", (event) => {
         const newEvent = new Event(`${event.target.id}-touch-start`, eventOptions);
         event.target.dispatchEvent(newEvent);

@@ -90,9 +90,33 @@
       background-color: rgb(14, 14, 14);
     }
 
+    .scroll {
+      position: absolute;
+      z-index: 100;
+      bottom: 20px;
+      left: 47%;
+      font-family: Courier New, Courier, monospace;
+      font-size: 26px;
+      animation: blink 4s ease-in-out infinite;
+    }
+
     @media screen and (max-width: 800px) {
       .header a {
         font-size: 16px;
+      }
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.2;
       }
     }
   </style>
@@ -117,6 +141,8 @@
       <div id="load-log">Loading broken dreams</div>
     </div>
   </div>
+
+  <div class="scroll">↓ scroll ↓</div>
 
   <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -259,6 +285,14 @@
       <a-entity vector-fields></a-entity>
     </a-entity>
   </a-scene>
+
+  <script>
+    const scroll = document.querySelector('.scroll');
+  
+    window.addEventListener('wheel', (e) => {
+      scroll.style.animation = "unset";
+    })
+  </script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ export default {
     // list of img names
     let imgList = [];
     let path = "assets/textures/img_";
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 21; i++) {
       let iPath = path + parseInt(i) + ".jpg";
       imgList.push(iPath);
     }
